@@ -1,7 +1,5 @@
 /*
   神魔之塔 2026 上半年卡池強度票選
-  可直接打開 index.html 使用。本機版資料存在 localStorage。
-  若要公開投票，請看 README.md 與 supabase-schema.sql。
 */
 
 const CONFIG = {
