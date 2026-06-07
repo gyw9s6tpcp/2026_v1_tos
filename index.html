@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神魔之塔 2026 上半年卡池強度票選</title>
+  <meta name="description" content="玩家票選神魔之塔 2026 上半年卡池強度、創新、CP值、保值與失望度。" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="wrapper nav-inner">
+      <div class="brand"><span class="logo">✦</span><span>神魔 2026 上半年卡池票選</span></div>
+      <nav class="nav-links" aria-label="主選單">
+        <a href="#vote">我要投票</a>
+        <a href="#results">即時結果</a>
+        <a href="#details">完整數據</a>
+        <a href="#setup">公開投票設定</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrapper hero-grid">
+        <div>
+          <span class="kicker">🧪 玩家口碑 × 強度統計 × 卡池回顧</span>
+          <h1><span class="gradient-text">2026 上半年</span><br>卡池強度票選</h1>
+          <p>這不是單純問「誰最強」而已，而是把【強度】、【創新】、【保值】、【CP值】、【抽完爽度】拆開評分。最後會產生排行榜、爭議度、最佳卡池、最失望卡池與玩家留言。</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#vote">開始投票</a>
+            <button class="ghost-btn" type="button" id="loadDemoBtn">載入示範資料</button>
+            <button class="ghost-btn" type="button" id="exportJsonTopBtn">匯出 JSON</button>
+          </div>
+        </div>
+        <aside class="stat-card" aria-label="統計摘要">
+          <div class="hero-metrics">
+            <div class="metric"><strong id="totalVotes">0</strong><span>有效票數</span></div>
+            <div class="metric"><strong id="poolCount">0</strong><span>卡池項目</span></div>
+            <div class="metric"><strong id="topPool">—</strong><span>目前綜合第一</span></div>
+            <div class="metric"><strong id="controversialPool">—</strong><span>目前最有爭議</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="vote">
+      <div class="wrapper">
+        <div class="section-title">
+          <div>
+            <h2>【投票區】給每個卡池一個真心分數</h2>
+            <p>1 分代表很不滿意，10 分代表非常推薦。你不用每張卡都抽過，也可以依照實戰、攻略、朋友分享與環境表現來評。</p>
+          </div>
+          <button class="mini-btn" type="button" id="quickFillBtn">快速填入 7 分</button>
+        </div>
+
+        <form class="panel" id="voteForm">
+          <div class="grid-3">
+            <div class="field">
+              <label for="nickname">UID/名稱 (可略過)</label>
+              <input id="nickname" name="nickname" maxlength="24" placeholder="例如：召喚師" />
+              <div class="helper">只顯示在留言區，不會用來辨識真實身份。</div>
+            </div>
+            <div class="field">
+              <label for="tenure">遊玩資歷</label>
+              <select id="tenure" name="tenure" required>
+                <option value="半年以下">半年以下</option>
+                <option value="1～3 年">1～3 年</option>
+                <option value="3～5 年">3～5 年</option>
+                <option value="5 年以上" selected>5 年以上</option>
+                <option value="回鍋玩家">回鍋玩家</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="spending">課金習慣</label>
+              <select id="spending" name="spending" required>
+                <option value="無課">無課</option>
+                <option value="小課 / 月卡" selected>小課 / 月卡</option>
+                <option value="中課 / 通行證">中課 / 通行證</option>
+                <option value="重課">重課</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="notice" style="margin: 18px 0;">
+            <span>💡</span>
+            <div>綜合分數權重：強度 35%、保值 20%、CP值 15%、創新 15%、抽完爽度 15%。</div>
+          </div>
+
+          <div class="pool-grid" id="poolRatings"></div>
+
+          <div class="section-title" style="margin-top: 26px;">
+            <div>
+              <h2>【其他調查】</h2>
+              <p>其他分類調查</p>
+            </div>
+          </div>
+
+          <div class="grid-2" id="awardFields"></div>
+
+          <div class="grid-2" style="margin-top: 16px;">
+            <div class="field">
+              <label for="bestLeader">你心中的上半年最佳隊長</label>
+              <select id="bestLeader" name="bestLeader" required></select>
+			  <div class="helper"></div>																						 
+            </div>
+            <div class="field">
+              <label for="bestMember">你心中的上半年最佳隊員</label>
+              <input id="bestMember" name="bestMember" placeholder="例如：某張常駐神隊員" />
+            </div>
+          </div>
+
+          <div class="field" style="margin-top: 16px;">
+            <label for="comment">想嘴、想誇、想補充都可以</label>
+            <textarea id="comment" name="comment" maxlength="240" placeholder="例如：某卡池強是真的強，但還是一坨……"></textarea>
+            <div class="helper"></div>
+          </div>
+
+          <div class="hero-actions" style="justify-content: flex-end;">
+            <button class="ghost-btn" type="reset">重填</button>
+            <button class="primary-btn" type="submit">送出我的票</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wrapper">
+        <div class="section-title">
+          <div>
+            <h2>【即時結果】</h2>
+            <p></p>
+          </div>
+          <div class="hero-actions" style="margin:0;">
+            <button class="ghost-btn" type="button" id="exportCsvBtn">匯出 CSV</button>
+            <button class="danger-btn" type="button" id="clearLocalBtn">清除本機票</button>
+          </div>
+        </div>
+
+        <div class="results-layout">
+          <div class="panel">
+            <div class="tabs" role="tablist" aria-label="排行榜切換">
+              <button class="tab active" type="button" data-tab="overall">綜合</button>
+              <button class="tab" type="button" data-tab="strength">強度</button>
+              <button class="tab" type="button" data-tab="innovation">創新</button>
+              <button class="tab" type="button" data-tab="value">CP值</button>
+              <button class="tab" type="button" data-tab="controversy">爭議度</button>
+            </div>
+            <div class="leaderboard" id="leaderboard"></div>
+          </div>
+
+          <div class="panel">
+            <h3 style="margin-top:0;">能力雷達圖</h3>
+            <canvas id="radarCanvas" width="560" height="560" aria-label="雷達圖"></canvas>
+            <div class="field" style="margin-top: 12px;">
+              <label for="radarPool">選擇卡池</label>
+              <select id="radarPool"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 18px;">
+          <div class="panel">
+            <h3 style="margin-top:0;">各卡池綜合平均</h3>
+            <div class="bar-chart" id="barChart"></div>
+          </div>
+          <div class="panel">
+            <h3 style="margin-top:0;">票選獎項目前第一</h3>
+            <div class="awards-grid" id="awardResults"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="details">
+      <div class="wrapper">
+        <div class="section-title">
+          <div>
+            <h2>【完整數據</h2>
+            <p></p>
+          </div>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>卡池</th>
+                <th>類型</th>
+                <th>有效評分</th>
+                <th>綜合</th>
+                <th>強度</th>
+                <th>創新</th>
+                <th>保值</th>
+                <th>CP值</th>
+                <th>爽度</th>
+                <th>爭議度</th>
+              </tr>
+            </thead>
+            <tbody id="detailRows"></tbody>
+          </table>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px;">
+          <div class="panel">
+            <h3 style="margin-top:0;">玩家留言</h3>
+            <div class="comment-list" id="comments"></div>
+          </div>
+          <div class="panel">
+            <h3 style="margin-top:0;">已內建的卡池清單</h3>
+            <ul class="source-list" id="poolList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <footer class="footer">
+    <div class="wrapper">Made for TOS player survey｜非官方玩家統計頁｜資料請以遊戲內與官方公告為準</div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
