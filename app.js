@@ -6,7 +6,7 @@
 
 const CONFIG = {
   mode: "supabase",
-  supabaseUrl: "https://aqzkspvejazwcikewgcg.supabase.co/rest/v1/",
+  supabaseUrl: "https://aqzkspvejazwcikewgcg.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxemtzcHZlamF6d2Npa2V3Z2NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MzMyOTAsImV4cCI6MjA5NjQwOTI5MH0.9sW6G7RCH1ELv0R1c9SQ_6N0tCMw1aB0zd7HgzJTtrU",
   tableName: "tos_2026_votes",
 };
